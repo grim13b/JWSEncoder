@@ -19,8 +19,8 @@ def build_payload(filename, issuer, subject, expiry_period):
     jst = datetime.timezone(datetime.timedelta(hours=+9), 'JST')
     dt = datetime.datetime.now(jst)
 
-    created_at = dt.isoformat()
-    expired_at = (dt + datetime.timedelta(hours=expiry_period)).isoformat()
+    created_at = int(dt.timestamp())
+    expired_at = int((dt + datetime.timedelta(hours=expiry_period)).timestamp())
 
     with open(filename) as f:
         user_data = json.load(f)
